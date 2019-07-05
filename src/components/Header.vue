@@ -1,10 +1,16 @@
 <template>
     <div class="header">
-        <div class="header-l">0</div>
+        <div class="header-l">
+            <span class="icon">&#xe624;</span>
+        </div>
         <div class="header-main">
+            <span class="icon">&#xe632;</span>
             <input type="text" placeholder="输入内容">
         </div>
-        <div class="header-r">2</div>
+        <div class="header-r">
+            城市
+            <span class="icon">&#xe64a;</span>
+        </div>
     </div>
 </template>
 
