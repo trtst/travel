@@ -1,15 +1,15 @@
 <template>
     <div class="header">
         <div class="header-l">
-            <span class="icon">&#xe624;</span>
+            <span class="icon back-icon">&#xe624;</span>
         </div>
         <div class="header-main">
-            <span class="icon">&#xe632;</span>
-            <input type="text" placeholder="输入内容">
+            <span class="icon serach-icon">&#xe632;</span>
+            输入城市/景点/游玩主题
         </div>
         <div class="header-r">
             城市
-            <span class="icon">&#xe64a;</span>
+            <span class="icon arrow-icon">&#xe64a;</span>
         </div>
     </div>
 </template>
@@ -18,24 +18,43 @@
 </script>
 
 <style lang="less" scoped>
+    @import '~styles/varibles.less';
+
     .header {
         display: flex;
-        height: .86rem;
+        height: @headerHeight;
+        line-height: @headerHeight;
+        padding: 0.12rem 0;
         font-size: 0;
         color: #fff;
-        background: #00bcd4;
+        background: @bgColor;
         .header-l {
             display: inline-block;
             width: .64rem;
+            text-align: center;
         }
         .header-main {
             display: inline-block;
             flex: 1;
-            padding: .1rem 0;
+            padding: 0 .1rem;
+            line-height: @headerHeight;
+            border-radius: 0.1rem;
+            font-size: .28rem;
+            color: #ccc;
+            background: #fff;
         }
         .header-r {
             display: inline-block;
             width: 1.24rem;
+            padding: 0 0.1rem;
+            font-size: .28rem;
+            text-align: right;
+        }
+        .back-icon {
+            font-size: .4rem;
+        }
+        .arrow-icon {
+            font-size: .2rem;
         }
     }
 </style>
