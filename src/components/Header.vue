@@ -7,10 +7,12 @@
             <span class="icon serach-icon">&#xe632;</span>
             输入城市/景点/游玩主题
         </div>
-        <div class="header-r">
-            城市
-            <span class="icon arrow-icon">&#xe64a;</span>
-        </div>
+        <router-link to="/city">
+            <div class="header-r">
+                城市
+                <span class="icon arrow-icon">&#xe64a;</span>
+            </div>
+        </router-link>
     </div>
 </template>
 
@@ -49,6 +51,7 @@
             padding: 0 0.1rem;
             font-size: .28rem;
             text-align: right;
+            color: #fff;
         }
         .back-icon {
             font-size: .4rem;
