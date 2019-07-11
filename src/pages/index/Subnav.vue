@@ -1,16 +1,7 @@
 <template>
     <div class="subnav">
         <swiper :options="swiperOption">
-            <swiper-slide>I'm Slide 1</swiper-slide>
-            <swiper-slide>I'm Slide 2</swiper-slide>
-            <swiper-slide>I'm Slide 3</swiper-slide>
-            <swiper-slide>I'm Slide 4</swiper-slide>
-            <swiper-slide>I'm Slide 5</swiper-slide>
-            <swiper-slide>I'm Slide 6</swiper-slide>
-            <swiper-slide>I'm Slide 7</swiper-slide>
-            <swiper-slide>I'm Slide 8</swiper-slide>
-            <swiper-slide>I'm Slide 9</swiper-slide>
-            <swiper-slide>I'm Slide 10</swiper-slide>
+            <swiper-slide v-for="item of list" :key="item.id"><img class="swiper-img" :src="item.imgUrl" /> <div v-text="item.desc"></div></swiper-slide>
             <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>
     </div>
@@ -19,6 +10,9 @@
 <script>
     export default {
         name: 'HomeSubnav',
+        props: {
+            list: Array
+        },
         data () {
             return {
                 swiperOption: {
@@ -33,11 +27,24 @@
     }
 </script>
 
+<style lang="less" scoped>
+    .subnav {
+        width: 100%;
+        background: #eee;
+        overflow: hidden;
+        .swiper-slide {
+            text-align: center;
+        }
+        .swiper-img {
+            width: 1rem;
+            margin: .3rem 0 .2rem;
+        }
+    }
+</style>
 <style>
     .subnav .swiper-pagination-bullet-active {
         background: rgba(0,175,190,.8);
     }
-    
     .swiper-slide {
         height: 100px;
     }

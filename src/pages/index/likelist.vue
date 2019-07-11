@@ -1,24 +1,12 @@
 <template>
     <div class="likelist">
-        <div class="item">
+        <div class="item" v-for="item of list" :key="item.id">
             <div class="item-img">
-                <img src="http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_200x200_1bc99086.jpg" alt="">
+                <img :src="item.imgUrl" alt="">
             </div>
             <div class="item-main">
-                <div class="item-title">故宫</div>
-                <div class="item-desc">在帝都过周末，不仅仅是城中游！</div>
-                <div class="item-bottom">
-                    <span class="item-price">¥<em class="item-price-num">78</em></span>起
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img">
-                <img src="http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_200x200_1bc99086.jpg" alt="">
-            </div>
-            <div class="item-main">
-                <div class="item-title">故宫</div>
-                <div class="item-desc">在帝都过周末，不仅仅是城中游！</div>
+                <div class="item-title" :text="item.title">故宫</div>
+                <div class="item-desc" :text="item.desc">在帝都过周末，不仅仅是城中游！</div>
                 <div class="item-bottom">
                     <span class="item-price">¥<em class="item-price-num">78</em></span>起
                 </div>
@@ -28,6 +16,12 @@
 </template>
 
 <script>
+    export default {
+        name: 'HomeLike',
+        props: {
+            list: Array
+        }
+    }
 </script>
 
 <style lang="less" scoped>
@@ -37,7 +31,6 @@
             display: flex;
             padding: .2rem 0;
             border-bottom: 1px solid #e0e0e0;
-            
             &:last-child {
                 border-bottom: 0;
             }

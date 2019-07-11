@@ -1,21 +1,12 @@
 <template>
     <div class="weekend">
-        <div class="item">
+        <div class="item" v-for="item of list" :key="item.id">
             <div class="item-img">
-                <img src="http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_200x200_1bc99086.jpg" alt="">
+                <img :src="item.imgUrl" alt="">
             </div>
             <div class="item-main">
-                <div class="item-title">故宫</div>
-                <div class="item-desc">在帝都过周末，不仅仅是城中游！</div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img">
-                <img src="http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_200x200_1bc99086.jpg" alt="">
-            </div>
-            <div class="item-main">
-                <div class="item-title">故宫</div>
-                <div class="item-desc">在帝都过周末，不仅仅是城中游！</div>
+                <div class="item-title" :text="item.title">故宫</div>
+                <div class="item-desc" :text="item.desc">在帝都过周末，不仅仅是城中游！</div>
             </div>
         </div>
     </div>
@@ -23,6 +14,10 @@
 
 <script>
     export default {
+        name: 'HomeWeek',
+        props: {
+            list: Array
+        }
     }
 </script>
 
@@ -30,7 +25,6 @@
     .weekend {
         .item {
             padding: .2rem 0 0;
-            
             &:last-child {
                 border-bottom: 0;
             }
