@@ -2,8 +2,8 @@
     <div>
         <city-header></city-header>
         <city-search></city-search>
-        <city-list :cities="cities" :hot="hotCities"></city-list>
-        <city-alphabet :cities="cities"></city-alphabet>
+        <city-list :cities="cities" :hot="hotCities" :letter="letter" @letter="listChange"></city-list>
+        <city-alphabet :cities="cities" :curIndex="curIndex" @letter="handleChange"></city-alphabet>
     </div>
 </template>
 
@@ -18,7 +18,9 @@
         data () {
             return {
                 hotCities: [],
-                cities: {}
+                cities: {},
+                letter: '',
+                curIndex: ''
             }
         },
         components: {
@@ -37,6 +39,12 @@
                         this.hotCities = data.hotCities
                     }
                 })
+            },
+            handleChange (letter) {
+                this.letter = letter
+            },
+            listChange (letter) {
+                this.curIndex = letter
             }
         },
         mounted () {
