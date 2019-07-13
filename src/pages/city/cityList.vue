@@ -3,11 +3,16 @@
         <div>
             <h2 class="title">您的位置：</h2>
             <div class="list-main">
-                <span class="item">北京</span>
+                <span class="item">{{this.$store.state.city}}</span>
             </div>
             <h2 class="title" ref="top">热门城市：</h2>
             <div class="list-main">
-                <span class="item" v-for="item of hot" :key="item.id">{{item.name}}</span>
+                <span
+                    class="item"
+                    v-for="item of hot"
+                    :key="item.id"
+                    @click="handleCityClick(item.name)"
+                >{{item.name}}</span>
             </div>
             <div v-for="(item, key) of cities" :key="key" :ref="key">
                 <h2 class="title">{{key}}</h2>
@@ -42,6 +47,19 @@
                 return letters
             }
         },
+        methods: {
+            handleCityClick () {
+                alert(0)
+            }
+        },
+        watch: {
+            letter () {
+                if (this.letter) {
+                    const el = this.$refs[this.letter][0]
+                    this.scroll.scrollToElement(el, 500)
+                }
+            }
+        },
         mounted () {
             this.scroll = new Bscroll(this.$refs.wrapper)
             this.scroll.on('scrollEnd', () => {
@@ -53,14 +71,6 @@
                     }
                 }
             })
-        },
-        watch: {
-            letter () {
-                if (this.letter) {
-                    const el = this.$refs[this.letter][0]
-                    this.scroll.scrollToElement(el, 500)
-                }
-            }
         }
     }
 </script>

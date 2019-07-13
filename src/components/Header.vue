@@ -9,7 +9,7 @@
         </div>
         <router-link to="/city">
             <div class="header-r">
-                城市
+                {{this.$store.state.city}}
                 <span class="icon arrow-icon">&#xe64a;</span>
             </div>
         </router-link>
