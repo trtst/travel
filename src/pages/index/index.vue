@@ -15,6 +15,7 @@
     import iLikelist from '@/pages/index/Likelist'
     import iWeekend from '@/pages/index/Weekend'
     import axios from 'axios'
+    import { mapState } from 'vuex'
     export default {
         name: 'index',
         data () {
@@ -22,7 +23,8 @@
                 swiperList: [],
                 subList: [],
                 likeList: [],
-                weekendList: []
+                weekendList: [],
+                lastCity: ''
             }
         },
         components: {
@@ -33,11 +35,15 @@
             iWeekend
         },
         mounted () {
+            this.lastCity = this.city
             this.getHomeInfo()
+        },
+        computed: {
+            ...mapState(['city'])
         },
         methods: {
             getHomeInfo () {
-                axios.get('/api/index.json').then((res) => {
+                axios.get('/api/index.json?city=' + this.city).then((res) => {
                     res = res.data
                     if (res.ret && res.data) {
                         const data = res.data
@@ -47,6 +53,12 @@
                         this.weekendList = data.weekendList
                     }
                 })
+            }
+        },
+        activated () {
+            if (this.lastCity !== this.city) {
+                this.lastCity = this.city
+                this.getHomeInfo()
             }
         }
     }

@@ -5,8 +5,8 @@
                 <img :src="item.imgUrl" alt="">
             </div>
             <div class="item-main">
-                <div class="item-title" :text="item.title">故宫</div>
-                <div class="item-desc" :text="item.desc">在帝都过周末，不仅仅是城中游！</div>
+                <div class="item-title" v-text="item.title"></div>
+                <div class="item-desc" v-text="item.desc"></div>
             </div>
         </div>
     </div>
