@@ -1,20 +1,24 @@
 <template>
     <div class="list" ref="wrapper">
         <div>
-            <h2 class="title">您的位置：</h2>
-            <div class="list-main">
-                <span class="item">{{this.$store.state.city}}</span>
+            <div class="area">
+                <h2 class="title">您的位置：</h2>
+                <div class="list-main">
+                    <span class="item">{{this.city}}</span>
+                </div>
             </div>
-            <h2 class="title" ref="top">热门城市：</h2>
-            <div class="list-main">
-                <span
-                    class="item"
-                    v-for="item of hot"
-                    :key="item.id"
-                    @click="handleCityClick(item.name)"
-                >{{item.name}}</span>
+            <div class="area">
+                <h2 class="title" ref="top">热门城市：</h2>
+                <div class="list-main">
+                    <span
+                        class="item"
+                        v-for="item of hot"
+                        :key="item.id"
+                        @click="handleCityClick(item.name)"
+                    >{{item.name}}</span>
+                </div>
             </div>
-            <div v-for="(item, key) of cities" :key="key" :ref="key">
+            <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
                 <h2 class="title">{{key}}</h2>
                 <div class="list-main list-main-row">
                     <div class="item-row" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
@@ -26,6 +30,7 @@
 
 <script>
     import Bscroll from 'better-scroll'
+    import { mapState, mapMutations } from 'vuex'
     export default {
         name: 'CityList',
         props: {
@@ -45,12 +50,15 @@
                     letters.unshift([i, this.$refs[i][0].offsetTop])
                 }
                 return letters
-            }
+            },
+            ...mapState(['city'])
         },
         methods: {
-            handleCityClick () {
-                alert(0)
-            }
+            handleCityClick (city) {
+                this.changeCity(city)
+                this.$router.push('/')
+            },
+            ...mapMutations(['changeCity'])
         },
         watch: {
             letter () {
@@ -61,7 +69,9 @@
             }
         },
         mounted () {
-            this.scroll = new Bscroll(this.$refs.wrapper)
+            this.scroll = new Bscroll(this.$refs.wrapper, {
+                click: true
+            })
             this.scroll.on('scrollEnd', () => {
                 const top = Math.floor(Math.abs(this.scroll.y))
                 for (let k of this.letters) {

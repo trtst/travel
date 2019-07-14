@@ -47,7 +47,7 @@
         }
         .header-r {
             display: inline-block;
-            width: 1.24rem;
+            min-width: 1.24rem;
             padding: 0 0.1rem;
             font-size: .28rem;
             text-align: right;
